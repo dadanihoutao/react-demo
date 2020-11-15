@@ -1,79 +1,90 @@
 const path = require('path')
+const webpack = require('webpack')
 const utils = require('./utils.js')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
-    app: './src/index'
+    app: './src/main'
   },
   output: {
     path: utils.resolve('../dist'),
-    filename: 'js/[name].[hash].js',
-    publicPath: '/'
+    publicPath: '/',
+    filename: utils.assetsPath('js/[name].[hash:7].js'),
+    chunkFilename: utils.assetsPath('js/[name].[chunkhash:7].js')
+  },
+  externals: {
+    // react: 'react'
   },
   module: {
     rules:[
       {
-        test: /\.(js|jsx)$/,//一个匹配loaders所处理的文件的拓展名的正则表达式，这里用来匹配js和jsx文件（必须）
-        exclude: /node_modules/,//屏蔽不需要处理的文件（文件夹）（可选）
-        loader: 'babel-loader',//loader的名称（必须）
+        test: /\.(js|jsx)$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        exclude: /node_modules/,
+        include: /src/,
+        options: {
+          formatter: require('eslint-friendly-formatter'),
+          emitWarning: true
+        }
       },
-      {
-        test: /\.css$/,
-        use:[
-            {
-                loader: 'style-loader', // 创建 <style></style>
-            },
-            { 
-                loader: 'css-loader',  // 转换css
-            }
-        ]
-      },
-      {
-        test: /\.less$/,
-        use: [
-            {
-            loader: 'style-loader', 
-            },
-            {
-            loader: 'css-loader',
-            },
-            {
-            loader: 'less-loader', // 编译 Less -> CSS
-            },
-        ],
-      },
+			{
+				test: /\.(js|jsx)$/,
+				exclude: /node_modules/,
+				loader: 'babel-loader'
+			},
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-            limit: 10000, // url-loader 包含file-loader，这里不用file-loader, 小于10000B的图片base64的方式引入，大于10000B的图片以路径的方式导入
-            name: 'static/img/[name].[hash:7].[ext]'
+          limit: 10000,
+          name: utils.assetsPath('img/[name].[hash:7].[ext]')
+        }
+      },
+      {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 1000,
+          name: utils.assetsPath('media/[name].[hash:7].[ext]')
         }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
         options: {
-            limit: 10000, // 小于10000B的图片base64的方式引入，大于10000B的图片以路径的方式导入
-            name: 'static/fonts/[name].[hash:7].[ext]'
+          limit: 10000,
+          name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'], // 解析扩展。（当我们通过路导入文件，找不到改文件时，会尝试加入这些后缀继续寻找文件）
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
-        '@': path.join(__dirname, '..', "src") // 在项目中使用@符号代替src路径，导入文件路径更方便
+      '@': path.join(__dirname, '..', "src")
     }
   },
   plugins: [
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        APP_ENV: JSON.stringify(process.argv[2])
+      }
+    }),
 		new CopyWebpackPlugin([
 			{
 				from: utils.resolve('../static'),
 				to: 'static',
 				ignore: [ '.*' ]
       }
-    ])
+    ]),
+    new MiniCssExtractPlugin({
+      ignoreOrder: true,
+      filename: utils.assetsPath('css/[name].[hash:7].css'),
+      chunkFilename: utils.assetsPath('css/[id].[chunkhash:7].css')
+    })
   ]
 }
