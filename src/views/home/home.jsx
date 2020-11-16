@@ -1,8 +1,10 @@
 import React from 'react'
-import './home.less'
-import { Button } from 'antd-mobile'
+import {withRouter} from 'react-router-dom'
+import './Home.less'
+import App from '@/components/home/App'
 
-export default class HomeIndex extends React.Component {
+
+class HomeIndex extends React.Component {
   constructor (props) {
     super(props)
     this.data = {
@@ -25,12 +27,10 @@ export default class HomeIndex extends React.Component {
     }
   }
   UNSAFE_componentWillMount () {
-    console.log('首页')
     this.init()
   }
   // 初始化
   init () {
-    console.log(2222444)
     let { params } = this.data
     this.$post('pick/tm_resource/list', params).then(res => {
       if (res.code === 200) {
@@ -41,9 +41,10 @@ export default class HomeIndex extends React.Component {
   render () {
     return (
       <div className="home-page">
-        <p className="home-text">HomeIndex</p>
-        <Button type="primary">按钮啊</Button>
+        <App></App>
       </div>
     )
   }
 }
+export default withRouter(HomeIndex)
+// export default HomeIndex

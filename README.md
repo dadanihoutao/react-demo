@@ -44,7 +44,6 @@ LoadableComponent.prototype.UNSAFE_componentWillMount = function componentWillMo
 ```
 
 # 未完成
-redux 还没集成进来
 rem 适配方法没搞
 https://www.cnblogs.com/hss-blog/p/11362900.html
 

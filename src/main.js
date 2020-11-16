@@ -3,14 +3,20 @@ import Axios from '@/utils/request'
 /* eslint-enable */
 import React from 'react'
 import ReactDom from 'react-dom'
+import {Provider} from 'react-redux'
 import './assets/less/index.less'
 import 'antd-mobile/dist/antd-mobile.css'
 import AppRouter from '@/router/router'
+import store from '@/redux/store'
+
 
 class App extends React.Component {
   render () {
     return (
-      <AppRouter />
+      <Provider store={store}>
+        <AppRouter/>
+      </Provider>
+      // <AppRouter/>
     )
   }
 }
