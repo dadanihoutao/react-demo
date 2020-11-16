@@ -6,8 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
-const HOST = process.env.HOST
-const PORT = process.env.PORT && Number(process.env.PORT)
+const HOST = utils.getIPAdress()
 
 const devWebpackConfig = webpackMerge(baseWebpackConfig, {
   mode: 'development',
@@ -30,10 +29,15 @@ const devWebpackConfig = webpackMerge(baseWebpackConfig, {
     hot: true,
     contentBase: false,
     compress: true,
-    port: PORT || '8081',
+    port: '8082',
     publicPath: '/',
     quiet: true,
-    overlay: true,
+    // overlay: true,
+    overlay: {
+      warnings: true,
+      errors: true
+    },
+    disableHostCheck: true,
     proxy: {
       // "/api": {
       //     secure: false,
@@ -42,24 +46,22 @@ const devWebpackConfig = webpackMerge(baseWebpackConfig, {
     }
   }
 })
-module.exports = devWebpackConfig
 
 // 这里还有点问题，回头再看看来
-// module.exports = new Promise((resolve, reject) => {
-//   portfinder.basePort = PORT || devWebpackConfig.devServer.port
-//   portfinder.getPort((err, port) => {
-//     if (err) {
-//       reject(err)
-//     } else {
-//       process.env.PORT = port
-//       devWebpackConfig.devServer.port = port
-//       devWebpackConfig.plugins.push(new FriendlyErrorsWebpackPlugin({
-//         compilationSuccessInfo: {
-//           messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`]
-//         },
-//         onErrors: utils.createNotifierCallback()
-//       }))
-//       resolve(devWebpackConfig)
-//     }
-//   })
-// })
+module.exports = new Promise((resolve, reject) => {
+  portfinder.basePort = devWebpackConfig.devServer.port
+  portfinder.getPort((err, port) => {
+    if (err) {
+      reject(err)
+    } else {
+      devWebpackConfig.devServer.port = port
+      devWebpackConfig.plugins.push(new FriendlyErrorsWebpackPlugin({
+        compilationSuccessInfo: {
+          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`]
+        },
+        onErrors: utils.createNotifierCallback()
+      }))
+      resolve(devWebpackConfig)
+    }
+  })
+})

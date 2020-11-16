@@ -1,4 +1,6 @@
 const path = require('path')
+const os = require('os')
+const packageConfig = require('../package.json')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 
@@ -19,15 +21,13 @@ exports.createNotifierCallback = () => {
 
   return (severity, errors) => {
     if (severity !== 'error') return
-
     const error = errors[0]
     const filename = error.file && error.file.split('!').pop()
-
     notifier.notify({
       title: packageConfig.name,
       message: severity + ': ' + error.name,
       subtitle: filename || '',
-      icon: path.join(__dirname, 'logo.png')
+      icon: path.join(__dirname, 'logo.png') || ''
     })
   }
 }
@@ -77,4 +77,17 @@ exports.cssLoaders = (options) => {
     })
   }
   return output
+}
+
+exports.getIPAdress = () => {
+  let interfaces = os.networkInterfaces()
+  for (var devName in interfaces) {
+      let iface = interfaces[devName]
+      for (let i = 0; i < iface.length; i++) {
+          let alias = iface[i];
+          if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
+              return alias.address;
+          }
+      }
+  }
 }
