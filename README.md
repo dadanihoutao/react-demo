@@ -29,11 +29,22 @@ componentWillMount → UNSAFE_componentWillMount
 
 如果还是不行，node_modules 目录下找到 react-loadable 安装包, 找到 /react-loadable/libs/index.js 中搜索 componentWillMount 替换成 UNSAFE_componentWillMount
 
+```
+// 166 行
+LoadableComponent.prototype.componentWillMount = function componentWillMount() {
+  this._mounted = true;
+  this._loadModule();
+};
 
+// 替换成
+LoadableComponent.prototype.UNSAFE_componentWillMount = function componentWillMount() {
+  this._mounted = true;
+  this._loadModule();
+};
+```
 
 # 未完成
 redux 还没集成进来
-修改 js 文件不能热更新， 不知道咋回事
 rem 适配方法没搞
 https://www.cnblogs.com/hss-blog/p/11362900.html
 

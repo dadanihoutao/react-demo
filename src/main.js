@@ -15,3 +15,9 @@ class App extends React.Component {
   }
 }
 ReactDom.render(<App/>,document.getElementById('app'))
+
+/* eslint-disable */
+if (module.hot) {
+  module.hot.accept()
+}
+/* eslint-enable */

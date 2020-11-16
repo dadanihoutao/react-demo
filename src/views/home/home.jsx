@@ -25,7 +25,7 @@ export default class HomeIndex extends React.Component {
     }
   }
   UNSAFE_componentWillMount () {
-    console.log('首页1111222')
+    console.log('首页')
     this.init()
   }
   // 初始化
