@@ -42,22 +42,24 @@ const devWebpackConfig = webpackMerge(baseWebpackConfig, {
     }
   }
 })
+module.exports = devWebpackConfig
 
-module.exports = new Promise((resolve, reject) => {
-  portfinder.basePort = PORT || devWebpackConfig.devServer.port
-  portfinder.getPort((err, port) => {
-    if (err) {
-      reject(err)
-    } else {
-      process.env.PORT = port
-      devWebpackConfig.devServer.port = port
-      devWebpackConfig.plugins.push(new FriendlyErrorsWebpackPlugin({
-        compilationSuccessInfo: {
-          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`]
-        },
-        onErrors: utils.createNotifierCallback()
-      }))
-      resolve(devWebpackConfig)
-    }
-  })
-})
+// 这里还有点问题，回头再看看来
+// module.exports = new Promise((resolve, reject) => {
+//   portfinder.basePort = PORT || devWebpackConfig.devServer.port
+//   portfinder.getPort((err, port) => {
+//     if (err) {
+//       reject(err)
+//     } else {
+//       process.env.PORT = port
+//       devWebpackConfig.devServer.port = port
+//       devWebpackConfig.plugins.push(new FriendlyErrorsWebpackPlugin({
+//         compilationSuccessInfo: {
+//           messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`]
+//         },
+//         onErrors: utils.createNotifierCallback()
+//       }))
+//       resolve(devWebpackConfig)
+//     }
+//   })
+// })

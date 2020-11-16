@@ -13,6 +13,8 @@
       "corejs": 2,
       "useBuildIns":"usage"
     }],
+    ["@babel/plugin-proposal-decorators",{"legacy": true}], // 配置对装饰器的支持
+    ["@babel/plugin-proposal-class-properties",{"loose":true}], // 支持类属性的插件（ES6新特性支持）
     ["import", { "libraryName": "antd-mobile", "style": "css" }]
   ]
 }

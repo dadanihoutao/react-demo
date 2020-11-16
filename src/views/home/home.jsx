@@ -1,7 +1,8 @@
 import React from 'react'
 import {withRouter} from 'react-router-dom'
 import './Home.less'
-import App from '@/components/home/App'
+import ComA from '@/components/home/ComA'
+import ComB from '@/components/home/ComB'
 
 
 class HomeIndex extends React.Component {
@@ -27,7 +28,7 @@ class HomeIndex extends React.Component {
     }
   }
   UNSAFE_componentWillMount () {
-    this.init()
+    // this.init()
   }
   // 初始化
   init () {
@@ -41,7 +42,8 @@ class HomeIndex extends React.Component {
   render () {
     return (
       <div className="home-page">
-        <App></App>
+        <ComA/>
+        <ComB/>
       </div>
     )
   }

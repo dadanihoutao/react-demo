@@ -37,7 +37,7 @@ module.exports = {
     },
   },
   "rules": {
-    "indent": ['warn', 2],
+    "indent": ['warn', 2, {"SwitchCase": 1}],
     "space-before-function-paren": 1,
     "eol-last": 1,
     "semi": ["error", "never"],
