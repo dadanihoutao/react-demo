@@ -68,5 +68,3 @@ LoadableComponent.prototype.UNSAFE_componentWillMount = function componentWillMo
   this._loadModule();
 };
 ```
-
-
