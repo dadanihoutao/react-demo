@@ -4,11 +4,20 @@
   display: flex;
   justify-content: space-between;
   width: calc(100% - 20px);
-  border-top: 1px solid red;
+  background: #ffffff;
+  border-top: 1px solid #cccccc;
   li {
     flex: 1;
-    height: 40px;
-    line-height: 40px;
+    height: 100px;
+    line-height: 100px;
     text-align: center;
+    border-left: 1px  solid #cccccc;
+    &:first-child {
+      border-left: none;
+    }
+    a {
+      font-size: 40px;
+      display: block;
+    }
   }
 }

@@ -3,6 +3,7 @@ const webpackMerge = require('webpack-merge')
 const baseWebpackConfig = require('./webpack.base.config')
 const utils = require('./utils')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
@@ -19,6 +20,9 @@ const devWebpackConfig = webpackMerge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: utils.resolve('../dist/index.html'),
       template: 'index.html'
+    }),
+    new HtmlWebpackTagsPlugin({
+      tags: utils.mergeLibs('css')
     })
   ],
   devServer: {

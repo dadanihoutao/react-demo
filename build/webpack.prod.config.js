@@ -6,7 +6,8 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-
+const HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin')
+const cdns = require('../config/cdn')
 
 const webpackConfig = webpackMerge(baseWebpackConfig, {
   performance: {
@@ -17,17 +18,18 @@ const webpackConfig = webpackMerge(baseWebpackConfig, {
   module: {
     rules: utils.cssLoaders({extract: true, sourceMap: false})
   },
+  externals: cdns.externals,
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: utils.resolve('../dist/index.html'),
       template: 'index.html',
       inject: true
+    }),
+    new HtmlWebpackTagsPlugin({
+      tags: utils.mergeLibs()
     })
   ],
-  externals: {
-    // react: 'react'
-  },
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
@@ -89,7 +91,7 @@ if (process.env.npm_config_analyz) {
   webpackConfig.plugins.push(new BundleAnalyzerPlugin({
     analyzerMode: 'server',
     analyzerHost: '127.0.0.1',
-    analyzerPort: 8888, 
+    analyzerPort: 8888,
     openAnalyzer: true
   }))
 }

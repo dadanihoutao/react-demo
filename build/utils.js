@@ -1,7 +1,30 @@
 const path = require('path')
 const os = require('os')
-const packageConfig = require('../package.json')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const packageConfig = require('../package.json')
+const cdns = require('../config/cdn')
+
+exports.mergeLibs = (type = '') => {
+  let libs = []
+  let keys = []
+  if (type) {
+    keys = [type]
+  } else {
+    keys = Object.keys(cdns.libs)
+  }
+  keys.forEach(key => {
+    cdns.libs[key].forEach(item => {
+      let obj = {
+        type: key,
+        append: false,
+        publicPath: false,
+        path: item
+      }
+      libs.push(obj)
+    })
+  })
+  return libs
+}
 
 exports.resolve = (dir) => {
   return path.resolve(__dirname, dir)
