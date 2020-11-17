@@ -2,8 +2,16 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 class ComB extends React.Component {
+  state = {
+    aaa: 123
+  }
+  componentDidMount () {
+    // this.setState({aaa: 444}, () => {
+    //   console.log(this.state)
+    // })
+  }
   render () {
-    console.log('ComB.render:',this.props)
+    console.log('ComB.render:', this.props)
     return (
       <div>
         {this.props.reducer.conut}
