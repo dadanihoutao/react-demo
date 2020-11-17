@@ -1,5 +1,4 @@
 import axios from 'axios'
-import {Component} from 'react'
 import {CONFIG} from '../../config/env'
 import qs from 'qs'
 import Lockr from 'lockr'
@@ -150,12 +149,5 @@ export function put (url, data = {}) {
       })
   })
 }
-
-Component.prototype.$axios = axios
-Component.prototype.$get = get
-Component.prototype.$post = post
-Component.prototype.$delete = doDelete
-Component.prototype.$patch = patch
-Component.prototype.$put = put
 
 export default axios

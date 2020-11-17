@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {addNumber} from '@/redux/actions'
+import './Coma.less'
 
 class ComA extends React.Component {
   
@@ -14,10 +15,9 @@ class ComA extends React.Component {
     this.props.addNumber()
   }
 
-
   render () {
     return (
-      <div>
+      <div className="com-a">
         <button onClick={this.handleClick}> + </button>
         <button onClick={this.addNumber}>+aaa</button>
       </div>

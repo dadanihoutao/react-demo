@@ -43,11 +43,11 @@ LoadableComponent.prototype.UNSAFE_componentWillMount = function componentWillMo
 };
 ```
 
+### rem 适配使用
+[amfe-flexible](https://www.npmjs.com/package/amfe-flexible)
+[postcss-pxtorem](https://www.npmjs.com/package/postcss-pxtorem)
+
+
 # 未完成
-rem 适配方法没搞
-https://www.cnblogs.com/hss-blog/p/11362900.html
-
-rem.less 文件先放进来，但是估计不行，用的 640 的设计稿 适配 100px = 1rem
-
 打包的时候 使用 CND 引入资源文件还没搞
 

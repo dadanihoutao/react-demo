@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom'
 import './Home.less'
 import ComA from '@/components/home/ComA'
 import ComB from '@/components/home/ComB'
+import {Button} from 'antd-mobile'
 
 
 class HomeIndex extends React.Component {
@@ -44,6 +45,7 @@ class HomeIndex extends React.Component {
       <div className="home-page">
         <ComA/>
         <ComB/>
+        <Button className="my-btn" type="primary">按钮啊</Button>
       </div>
     )
   }

@@ -3,7 +3,6 @@ const os = require('os')
 const packageConfig = require('../package.json')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-
 exports.resolve = (dir) => {
   return path.resolve(__dirname, dir)
 }

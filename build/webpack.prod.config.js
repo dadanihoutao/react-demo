@@ -25,6 +25,9 @@ const webpackConfig = webpackMerge(baseWebpackConfig, {
       inject: true
     })
   ],
+  externals: {
+    // react: 'react'
+  },
   optimization: {
     minimizer: [
       new UglifyJsPlugin({
@@ -81,8 +84,14 @@ const webpackConfig = webpackMerge(baseWebpackConfig, {
     }
   }
 })
+
 if (process.env.npm_config_analyz) {
-  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin({
+    analyzerMode: 'server',
+    analyzerHost: '127.0.0.1',
+    analyzerPort: 8888, 
+    openAnalyzer: true
+  }))
 }
 
 module.exports = webpackConfig

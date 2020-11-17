@@ -32,9 +32,8 @@ const devWebpackConfig = webpackMerge(baseWebpackConfig, {
     port: '8082',
     publicPath: '/',
     quiet: true,
-    // overlay: true,
     overlay: {
-      warnings: true,
+      warnings: false,
       errors: true
     },
     disableHostCheck: true,

@@ -14,9 +14,6 @@ module.exports = {
     filename: utils.assetsPath('js/[name].[hash:7].js'),
     chunkFilename: utils.assetsPath('js/[name].[chunkhash:7].js')
   },
-  externals: {
-    // react: 'react'
-  },
   module: {
     rules:[
       {

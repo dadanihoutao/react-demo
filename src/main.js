@@ -1,14 +1,21 @@
-/* eslint-disable */
-import Axios from '@/utils/request'
-/* eslint-enable */
 import React from 'react'
 import ReactDom from 'react-dom'
+import Lockr from 'lockr'
 import {Provider} from 'react-redux'
+import 'amfe-flexible'
 import './assets/less/index.less'
 import 'antd-mobile/dist/antd-mobile.css'
 import AppRouter from '@/router/router'
 import store from '@/redux/store'
+import axios, {post, get, doDelete, patch, put} from '@/utils/request'
 
+React.Component.prototype.$Lockr = Lockr
+React.Component.prototype.$axios = axios
+React.Component.prototype.$get = get
+React.Component.prototype.$post = post
+React.Component.prototype.$delete = doDelete
+React.Component.prototype.$patch = patch
+React.Component.prototype.$put = put
 
 class App extends React.Component {
   render () {
@@ -16,7 +23,6 @@ class App extends React.Component {
       <Provider store={store}>
         <AppRouter/>
       </Provider>
-      // <AppRouter/>
     )
   }
 }
