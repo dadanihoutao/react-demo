@@ -9,7 +9,7 @@ module.exports = {
       propList: ['*', '!font-weight', '!letter-spacing'], // 可以从px更改为rem的属性  感叹号开头的不转换
       mediaQuery: true, // 允许在媒体查询中转换px。
       minPixelValue: 0, // 设置要替换的最小像素值。
-      exclude: /node_modules/i // 排除 node_modules 内文件
+      exclude: /node_modules/i // 排除 node_modules 文件(node_modules 内文件禁止转换)
     })
   ]
 }
