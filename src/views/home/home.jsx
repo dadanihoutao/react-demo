@@ -9,8 +9,8 @@ import {settmData} from '@/redux/actions'
 
 
 class HomeIndex extends React.Component {
-  constructor (props) {
-    super(props)
+  constructor () {
+    super()
     this.state = {
       params: {
         page: 1,
