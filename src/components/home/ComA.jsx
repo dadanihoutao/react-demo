@@ -1,53 +1,27 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {addNumber} from '@/redux/actions'
-import './Coma.less'
+import {addCount} from '@/redux/actions'
+import './ComA.less'
 
 class ComA extends React.Component {
-  
-  handleClick = () => {
-    console.log('ComA:', this.props)
-    this.props.sendAction()
-  }
 
-  addNumber = () => {
-    console.log('ComA:', this.props)
-    this.props.addNumber()
+  addition = () => {
+    console.log('加：', this.props)
+    this.props.sendAction()
   }
 
   render () {
     return (
       <div className="com-a">
-        <button onClick={this.handleClick}> + </button>
-        <button onClick={this.addNumber}>+aaa</button>
+        <button onClick={this.addition}> + </button>
       </div>
     )
   }
 }
-/*
-这个函数要有一个返回值，返回值是一个对象
-*/
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     sendAction: () => {
-//       // 利用 dispatch 发送一个 action
-//       // 传递action 对象我们要定义一个type 属性
-//       dispatch({type: 'add_action'})
-//     }
-//   }
-// }
-// // A 是发送方，所以要实现 connect 第二个参数
-// export default connect(null, mapDispatchToProps)(ComA)
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    sendAction: () => {
-      dispatch({type: 'add_action'})
-    },
-    addNumber: () => {
-      dispatch(addNumber())
-    }
+    sendAction: () => dispatch(addCount())
   }
 }
-
 export default connect(null, mapDispatchToProps)(ComA)

@@ -14,14 +14,13 @@ class ComB extends React.Component {
     console.log('ComB.render:', this.props)
     return (
       <div>
-        {this.props.reducer.conut}
-        <h1>{this.props.counter.number}</h1>
+        <h1>{this.props.calculation.count}</h1>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   console.log('ComB:', state)
   return state
 }

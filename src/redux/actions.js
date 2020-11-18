@@ -1,29 +1,18 @@
-// let nextTodoId = 0
-
-// export const addTodo = text => {
-//   return {
-//     type: 'ADD_TODO',
-//     id: nextTodoId++,
-//     text
-//   }
-// }
-
-// export const setVisibilityFilter = filter => {
-//   return {
-//     type: 'SET_VISIBILITY_FILTER',
-//     filter
-//   }
-// }
-
-// export const toggleTodo = id => {
-//   return {
-//     type: 'TOGGLE_TODO',
-//     id
-//   }
-// }
-
-export const addNumber = () => {
+export const addCount = () => {
   return {
-    type: 'add_number'
+    type: 'ADD_COUNT'
+  }
+}
+
+export const reduceCount = () => {
+  return {
+    type: 'REDUCE_COUNT'
+  }
+}
+
+export const settmData = (data) => {
+  return {
+    type: 'SET_TMLIST',
+    data
   }
 }

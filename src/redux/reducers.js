@@ -1,62 +1,30 @@
-// import { combineReducers } from 'redux'
-
 import { combineReducers } from "redux"
 
-// export const todos = (state = [], action) => {
-//   switch (action.type) {
-//   case 'ADD_TODO':
-//     return [
-//       ...state,
-//       {
-//         id: action.id,
-//         text: action.text,
-//         completed: false
-//       }
-//     ]
-//   case 'TOGGLE_TODO':
-//     return state.map(todo =>
-//       (todo.id === action.id)
-//         ? {...todo, completed: !todo.completed}
-//         : todo
-//     )
-//   default:
-//     return state
-//   }
-// }
 
-// export const visibilityFilter = (state = 'SHOW_ALL', action) => {
-//   switch (action.type) {
-//   case 'SET_VISIBILITY_FILTER':
-//     return action.filter
-//   default:
-//     return state
-//   }
-// }
-
-// export const todoApp = combineReducers({
-//   todos,
-//   visibilityFilter
-// })
-const initState = {conut: 0}
-export const reducer = (state = initState, action) => {
-  console.log('reducer:', action)
+const initState = {count: 0}
+export const calculation = (state = initState, action) => {
   switch (action.type) {
-    case 'add_action':
+    case 'ADD_COUNT':
       return {
-        conut: state.conut + 1
+        count: state.count + 1
+      }
+    case 'REDUCE_COUNT':
+      return {
+        count: state.count > 0 ? state.count - 1 : 0
       }
     default:
       return state
   }
 }
 
-const initObj = {number: 0}
-export const counter = (state = initObj, action) => {
-  console.log('reducer:', action)
+const initTmList = {data: []}
+export const tmList = (state = initTmList, action) => {
+  console.log('tmList.reducer:', state, action)
   switch (action.type) {
-    case 'add_number':
+    case 'SET_TMLIST':
       return {
-        number: state.number + 1
+        ...state,
+        data: action.data
       }
     default:
       return state
@@ -64,6 +32,6 @@ export const counter = (state = initObj, action) => {
 }
 
 export const storeAll = combineReducers({
-  reducer,
-  counter
+  calculation,
+  tmList
 })
