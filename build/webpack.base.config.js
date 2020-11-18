@@ -8,6 +8,12 @@ module.exports = {
   entry: {
     app: './src/main'
   },
+  output: {
+    path: utils.resolve('../dist'),
+    publicPath: '/',
+    filename: utils.assetsPath('js/[name].[hash:7].js'),
+    chunkFilename: utils.assetsPath('js/[name].[contenthash:7].js'),
+  },
   module: {
     rules:[
       {

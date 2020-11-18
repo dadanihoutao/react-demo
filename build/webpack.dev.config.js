@@ -10,12 +10,6 @@ const portfinder = require('portfinder')
 const HOST = utils.getIPAdress()
 
 const devWebpackConfig = webpackMerge(baseWebpackConfig, {
-  output: {
-    path: utils.resolve('../dist'),
-    publicPath: '/',
-    filename: utils.assetsPath('js/[name].js'),
-    chunkFilename: utils.assetsPath('js/[name].js'),
-  },
   mode: 'development',
   devtool: 'inline-source-map',
   module: {

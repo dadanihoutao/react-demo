@@ -13,12 +13,6 @@ const webpackConfig = webpackMerge(baseWebpackConfig, {
   performance: {
     hints: false
   },
-  output: {
-    path: utils.resolve('../dist'),
-    publicPath: '/',
-    filename: utils.assetsPath('js/[name].[contenthash:7].js'),
-    chunkFilename: utils.assetsPath('js/[name].[contenthash:7].js'),
-  },
   mode: 'production',
   devtool: 'none',
   module: {

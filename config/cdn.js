@@ -12,7 +12,8 @@ exports.externals = {
   'react-router-dom': 'ReactRouterDOM',
   'redux': 'Redux',
   'react-redux': 'ReactRedux',
-  // 'antd-mobile': 'antd-mobile'
+  // 'antd-mobile': 'antd-mobile',
+  'axios': 'axios'
 }
 
 // CDN 资源链接
@@ -23,7 +24,8 @@ exports.libs = {
     'https://cdn.bootcdn.net/ajax/libs/react-router-dom/5.2.0/react-router-dom.min.js',
     'https://cdn.bootcdn.net/ajax/libs/redux/4.0.5/redux.min.js',
     'https://cdn.bootcdn.net/ajax/libs/react-redux/7.2.2/react-redux.min.js',
-    // 'https://cdn.bootcdn.net/ajax/libs/antd-mobile/2.3.4/antd-mobile.min.js'
+    // 'https://cdn.bootcdn.net/ajax/libs/antd-mobile/2.3.4/antd-mobile.min.js',
+    'https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js'
   ],
   css: [
     'https://cdn.bootcdn.net/ajax/libs/antd-mobile/2.3.4/antd-mobile.min.css'
