@@ -8,12 +8,6 @@ module.exports = {
   entry: {
     app: './src/main'
   },
-  output: {
-    path: utils.resolve('../dist'),
-    publicPath: '/',
-    filename: utils.assetsPath('js/[name].[hash:7].js'),
-    chunkFilename: utils.assetsPath('js/[name].[chunkhash:7].js')
-  },
   module: {
     rules:[
       {
@@ -80,8 +74,8 @@ module.exports = {
     ]),
     new MiniCssExtractPlugin({
       ignoreOrder: true,
-      filename: utils.assetsPath('css/[name].[hash:7].css'),
-      chunkFilename: utils.assetsPath('css/[id].[chunkhash:7].css')
+      filename: utils.assetsPath('css/[name].[contenthash:7].css')
+      // chunkFilename: utils.assetsPath('css/[name].[chunkhash:7].css')
     })
   ]
 }

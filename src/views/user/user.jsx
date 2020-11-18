@@ -4,7 +4,7 @@ export default class UserIndex extends React.Component {
   render () {
     return (
       <div>
-        <p>UserIndex</p>
+        <p>UserIndex12</p>
       </div>
     )
   }

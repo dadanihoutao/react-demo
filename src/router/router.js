@@ -2,10 +2,10 @@ import React from "react"
 import { Route, BrowserRouter, Link, Switch } from "react-router-dom"
 import LoadableComponent from './loadable'
 
-const HomeIndex = LoadableComponent(() => import(/* webpackChunkName: 'homePage' */ '@/views/home/Home'))
-const BlogIndex = LoadableComponent(() => import(/* webpackChunkName: 'blogPage' */ '@/views/blog/Blog'))
-const ResumeIndex = LoadableComponent(() => import(/* webpackChunkName: 'resumePage' */ '@/views/resume/Resume'))
-const UserIndex = LoadableComponent(() => import(/* webpackChunkName: 'userPage' */ '@/views/user/User'))
+const HomeIndex = LoadableComponent(() => import(/* webpackChunkName: 'home' */ '@/views/home/Home'))
+const BlogIndex = LoadableComponent(() => import(/* webpackChunkName: 'blog' */ '@/views/blog/Blog'))
+const ResumeIndex = LoadableComponent(() => import(/* webpackChunkName: 'resume' */ '@/views/resume/Resume'))
+const UserIndex = LoadableComponent(() => import(/* webpackChunkName: 'user' */ '@/views/user/User'))
 
 
 class AppRouter extends React.Component {

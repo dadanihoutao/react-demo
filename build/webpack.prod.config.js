@@ -13,6 +13,12 @@ const webpackConfig = webpackMerge(baseWebpackConfig, {
   performance: {
     hints: false
   },
+  output: {
+    path: utils.resolve('../dist'),
+    publicPath: '/',
+    filename: utils.assetsPath('js/[name].[contenthash:7].js'),
+    chunkFilename: utils.assetsPath('js/[name].[contenthash:7].js'),
+  },
   mode: 'production',
   devtool: 'none',
   module: {
@@ -31,6 +37,8 @@ const webpackConfig = webpackMerge(baseWebpackConfig, {
     })
   ],
   optimization: {
+    namedChunks: true,
+    moduleIds: 'hashed',
     minimizer: [
       new UglifyJsPlugin({
         parallel: true,
@@ -60,19 +68,26 @@ const webpackConfig = webpackMerge(baseWebpackConfig, {
       maxAsyncRequests: 5,
       maxInitialRequests: 5,
       automaticNameDelimiter: '~',
-      name:true,
+      name: true,
       cacheGroups: {
         antdui: {
-          priority: 2,  
+          priority: 3,
           test: /[\\/]node_modules[\\/](antd-mobile)[\\/]/,
+          enforce: true,
+          reuseExistingChunk: true
         },
         basic: {
           priority: 3, 
-          test: /[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom|axios)[\\/]/,
+          test: /[\\/]node_modules[\\/](react|react-dom|react-router|react-router-dom|redux|react-redux|axios)[\\/]/,
+          enforce: true,
+          reuseExistingChunk: true
         },
         vendors: {
+          minChunks: 1,
+          priority: -10,
           test: /[\\/]node_modules[\\/]/,
-          priority: -10
+          enforce: true,
+          reuseExistingChunk: true
         },
         default: {
           minChunks: 2,
@@ -81,8 +96,8 @@ const webpackConfig = webpackMerge(baseWebpackConfig, {
         }
       }
     },
-    runtimeChunk:{
-        name:'manifest'
+    runtimeChunk: {
+      name: 'manifest'
     }
   }
 })
