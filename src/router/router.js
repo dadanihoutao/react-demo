@@ -1,5 +1,5 @@
 import React from "react"
-import { Route,BrowserRouter,Link,Switch } from "react-router-dom"
+import { Route, BrowserRouter, Link, Switch } from "react-router-dom"
 import LoadableComponent from './loadable'
 
 const HomeIndex = LoadableComponent(() => import(/* webpackChunkName: 'homePage' */ '@/views/home/Home'))
