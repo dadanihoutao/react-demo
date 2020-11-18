@@ -43,7 +43,6 @@ class HomeIndex extends React.Component {
       if (res.code === 200) {
         console.log('tmList:',this.props)
         this.props.setTmList(res.for_sale_data.data)
-        this.setState({required: true})
       }
     })
   }
